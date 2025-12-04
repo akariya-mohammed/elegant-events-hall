@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Events Hall - Wedding & Event Venue</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Elegant Events Hall</div>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#venues">Venues</a>
+                    <a href="#availability">Availability</a>
+                    <a href="#packages">Packages</a>
+                    <a href="#booking">Booking</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Dream Wedding Starts Here</h1>
+            <p>Two beautiful venues • Live availability calendar</p>
+            <div class="hero-buttons">
+                <a href="#availability" class="btn btn-primary">Check Availability</a>
+                <a href="#booking" class="btn btn-secondary">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Live Calendar</h3>
+                    <p>Real-time availability for both halls</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Two Venue Options</h3>
+                    <p>Intimate hall (50-150) and Grand ballroom (200-500)</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Premium Service</h3>
+                    <p>Professional staff and exceptional attention</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venues -->
+    <section id="venues" class="venues">
+        <div class="container">
+            <h2>Our Venues</h2>
+            <div class="venue-grid">
+                <div class="venue-card">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop" alt="Intimate Hall">
+                    <div class="venue-content">
+                        <h3>Intimate Hall</h3>
+                        <p>Perfect for intimate weddings and celebrations</p>
+                        <p class="capacity">👥 50-150 guests</p>
+                        <p class="price">Starting from $2,000</p>
+                        <a href="#availability" class="btn btn-primary">Check Availability</a>
+                    </div>
+                </div>
+                <div class="venue-card">
+                    <img src="https://images.unsplash.com/photo-1519167758481-83f29da8323c?w=800&h=600&fit=crop" alt="Grand Ballroom">
+                    <div class="venue-content">
+                        <h3>Grand Ballroom</h3>
+                        <p>Luxurious space for grand celebrations</p>
+                        <p class="capacity">👥 200-500 guests</p>
+                        <p class="price">Starting from $5,000</p>
+                        <a href="#availability" class="btn btn-primary">Check Availability</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Availability Calendar -->
+    <section id="availability" class="availability">
+        <div class="container">
+            <h2>Check Availability</h2>
+            <p class="subtitle">Click on any available date to book</p>
+            <div id="calendars" class="calendar-grid"></div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section id="packages" class="packages">
+        <div class="container">
+            <h2>Wedding Packages</h2>
+            <div class="package-grid">
+                <div class="package-card">
+                    <h3>Basic</h3>
+                    <p class="package-price">$2,500</p>
+                    <ul>
+                        <li>✅ Venue Rental (6 hours)</li>
+                        <li>✅ Tables & Chairs</li>
+                        <li>✅ Basic Lighting</li>
+                        <li>✅ Parking</li>
+                    </ul>
+                    <a href="#booking" class="btn btn-primary">Select Package</a>
+                </div>
+                <div class="package-card featured">
+                    <div class="badge">MOST POPULAR</div>
+                    <h3>Premium</h3>
+                    <p class="package-price">$5,000</p>
+                    <ul>
+                        <li>✅ Venue Rental (8 hours)</li>
+                        <li>✅ Tables & Chairs</li>
+                        <li>✅ Premium Lighting</li>
+                        <li>✅ Decoration</li>
+                        <li>✅ Sound System</li>
+                        <li>✅ Parking</li>
+                    </ul>
+                    <a href="#booking" class="btn btn-primary">Select Package</a>
+                </div>
+                <div class="package-card">
+                    <h3>Luxury</h3>
+                    <p class="package-price">$8,500</p>
+                    <ul>
+                        <li>✅ Venue Rental (10 hours)</li>
+                        <li>✅ Premium Lighting & Decoration</li>
+                        <li>✅ Sound & DJ</li>
+                        <li>✅ Catering Service</li>
+                        <li>✅ Photography</li>
+                        <li>✅ Wedding Planner</li>
+                    </ul>
+                    <a href="#booking" class="btn btn-primary">Select Package</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section id="booking" class="booking">
+        <div class="container">
+            <div class="booking-form">
+                <h2>Complete Your Booking</h2>
+                
+                <div class="form-group">
+                    <label>Select Hall *</label>
+                    <select id="hall">
+                        <option value="">Choose a hall</option>
+                        <option value="small">Intimate Hall (50-150 guests) - $2,000</option>
+                        <option value="big">Grand Ballroom (200-500 guests) - $5,000</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="name" placeholder="John Doe or יוחנן דו">
+                        <small>Letters and spaces only (Hebrew/English)</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="email" placeholder="john@example.com">
+                        <small>Valid email address required</small>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Israeli Phone Number *</label>
+                        <input type="tel" id="phone" placeholder="050-1234567">
+                        <small>Formats: 050-1234567, +972-50-1234567</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Event Date *</label>
+                        <input type="date" id="date">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Number of Guests *</label>
+                        <input type="number" id="guests" min="1" placeholder="100">
+                    </div>
+                    <div class="form-group">
+                        <label>Event Type *</label>
+                        <select id="eventType">
+                            <option value="">Select Event Type</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="engagement">Engagement</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="corporate">Corporate Event</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Package *</label>
+                    <select id="package">
+                        <option value="">Select Package</option>
+                        <option value="basic">Basic - $2,500</option>
+                        <option value="premium">Premium - $5,000</option>
+                        <option value="luxury">Luxury - $8,500</option>
+                    </select>
+                </div>
+
+                <div id="paymentSummary" class="payment-summary" style="display: none;">
+                    <h3>💰 Payment Summary</h3>
+                    <div id="summaryContent"></div>
+                </div>
+
+                <button onclick="submitBooking()" class="btn btn-primary btn-large">
+                    Pay Deposit & Confirm Booking
+                </button>
+
+                <p class="form-note">
+                    🔒 Secure payment • 10% deposit required • Full payment due before event
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-item">
+                        <span class="icon">📍</span>
+                        <div>
+                            <p><strong>Address</strong></p>
+                            <p>123 Wedding Street, City, Israel</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📞</span>
+                        <div>
+                            <p><strong>Phone</strong></p>
+                            <p>050-123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📧</span>
+                        <div>
+                            <p><strong>Email</strong></p>
+                            <p>info@eleganteventshall.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">🕐</span>
+                        <div>
+                            <p><strong>Hours</strong></p>
+                            <p>Sun-Thu: 9:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                    <textarea placeholder="Your Message" rows="4"></textarea>
+                    <button onclick="alert('Message sent! We will contact you soon.')" class="btn btn-primary">
+                        Send Message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p><strong>Elegant Events Hall</strong></p>
+            <p>Two beautiful venues • Live availability tracking</p>
+            <p>© 2024 All rights reserved</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
