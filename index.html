@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elegant Events Hall - Wedding & Event Venue</title>
     <link rel="stylesheet" href="style.css">
-
     <!-- INTERNAL CALENDAR STYLE -->
     <style>
         .calendars-wrapper {
@@ -14,77 +13,356 @@
             gap: 30px;
             margin-top: 40px;
         }
-        .calendar-section { background: white; border-radius: 15px; padding: 25px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .hall-title { text-align: center; color:#667eea; margin-bottom:5px; font-size:1.5rem; }
-        .hall-capacity { text-align:center; color:#666; margin-bottom:20px; }
-        .calendar-header { display:flex; justify-content:space-between; 
-            align-items:center; margin-bottom:15px; }
+        .calendar-section { 
+            background: white; 
+            border-radius: 15px; 
+            padding: 25px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1); 
+        }
+        .hall-title { 
+            text-align: center; 
+            color:#667eea; 
+            margin-bottom:5px; 
+            font-size:1.5rem; 
+        }
+        .hall-capacity { 
+            text-align:center; 
+            color:#666; 
+            margin-bottom:20px; 
+        }
+        .calendar-header { 
+            display:flex; 
+            justify-content:space-between; 
+            align-items:center; 
+            margin-bottom:15px; 
+        }
         .calendar-header button {
-            background:#667eea; color:white; border:none; padding:8px 15px;
-            border-radius:5px; cursor:pointer;
+            background:#667eea; 
+            color:white; 
+            border:none; 
+            padding:8px 15px;
+            border-radius:5px; 
+            cursor:pointer;
+            transition: background 0.3s;
         }
-        .calendar-header button:hover { background:#5568d3; }
-        .month-year { font-size:1.2rem; font-weight:600; }
-        .calendar-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; }
-        .day-header { text-align:center; font-weight:600; color:#667eea; padding:10px; }
-        .day-cell { aspect-ratio:1; display:flex; align-items:center; justify-content:center;
-            border-radius:8px; cursor:pointer; transition:0.3s; }
-        .day-cell.empty { cursor:default; }
-        .day-cell.past { color:#ccc; cursor:not-allowed; }
-        .day-cell.available { background:#e8f5e9; color:#2e7d32; font-weight:500; }
-        .day-cell.available:hover { background:#4caf50; color:white; transform:scale(1.1); }
-        .day-cell.booked { background:#ffebee; color:#c62828; cursor:not-allowed; }
-        .day-cell.today { border:2px solid #667eea; }
-
-        .legend { display:flex; justify-content:center; gap:30px; margin-top:30px; }
-        .legend-item { display:flex; align-items:center; gap:12px; }
-        .legend-box { width:28px; height:28px; border-radius:4px; }
-        .legend-box.available { background:#e8f5e9; }
-        .legend-box.booked { background:#ffebee; }
-        .legend-box.today { border:2px solid #667eea; background:white; }
-
-        /* Modal */
+        .calendar-header button:hover { 
+            background:#5568d3; 
+        }
+        .month-year { 
+            font-size:1.2rem; 
+            font-weight:600; 
+        }
+        .calendar-grid { 
+            display:grid; 
+            grid-template-columns:repeat(7,1fr); 
+            gap:8px; 
+        }
+        .day-header { 
+            text-align:center; 
+            font-weight:600; 
+            color:#667eea; 
+            padding:10px; 
+        }
+        .day-cell { 
+            aspect-ratio:1; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center;
+            border-radius:8px; 
+            cursor:pointer; 
+            transition:0.3s; 
+        }
+        .day-cell.empty { 
+            cursor:default; 
+        }
+        .day-cell.past { 
+            color:#ccc; 
+            cursor:not-allowed; 
+        }
+        .day-cell.available { 
+            background:#e8f5e9; 
+            color:#2e7d32; 
+            font-weight:500; 
+        }
+        .day-cell.available:hover { 
+            background:#4caf50; 
+            color:white; 
+            transform:scale(1.1); 
+        }
+        .day-cell.booked { 
+            background:#ffebee; 
+            color:#c62828; 
+            cursor:not-allowed; 
+        }
+        .day-cell.today { 
+            border:2px solid #667eea; 
+        }
+        .legend { 
+            display:flex; 
+            justify-content:center; 
+            gap:30px; 
+            margin-top:30px; 
+        }
+        .legend-item { 
+            display:flex; 
+            align-items:center; 
+            gap:12px; 
+        }
+        .legend-box { 
+            width:28px; 
+            height:28px; 
+            border-radius:4px; 
+        }
+        .legend-box.available { 
+            background:#e8f5e9; 
+        }
+        .legend-box.booked { 
+            background:#ffebee; 
+        }
+        .legend-box.today { 
+            border:2px solid #667eea; 
+            background:white; 
+        }
+        
+        /* Modal Styles - Enhanced */
         .booking-modal {
-            display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-            background:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;
+            display:none; 
+            position:fixed; 
+            top:0; 
+            left:0; 
+            width:100%; 
+            height:100%;
+            background:rgba(0,0,0,0.7); 
+            z-index:1000; 
+            justify-content:center; 
+            align-items:center;
+            animation: fadeIn 0.3s;
         }
-        .booking-modal.active { display:flex; }
+        .booking-modal.active { 
+            display:flex; 
+        }
         .modal-content {
-            background:white; padding:30px; border-radius:15px; width:90%; max-width:450px;
+            background:white; 
+            padding:35px; 
+            border-radius:15px; 
+            width:90%; 
+            max-width:500px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s;
         }
-        .modal-buttons { display:flex; gap:15px; margin-top:20px; }
+        .modal-header {
+            color:#667eea;
+            margin-bottom:20px;
+            text-align:center;
+            font-size:1.8rem;
+        }
+        .modal-info {
+            background:#f5f5f5;
+            padding:15px;
+            border-radius:8px;
+            margin-bottom:25px;
+            text-align:center;
+            font-weight:500;
+            color:#333;
+            white-space: pre-line;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom:20px;
+        }
+        .form-group label {
+            display:block;
+            margin-bottom:8px;
+            color:#333;
+            font-weight:500;
+        }
+        .form-group input {
+            width:100%;
+            padding:12px 15px;
+            border:2px solid #e0e0e0;
+            border-radius:8px;
+            font-size:1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        .form-group input:focus {
+            outline:none;
+            border-color:#667eea;
+        }
+        .form-group input::placeholder {
+            color:#999;
+        }
+        
+        .modal-buttons { 
+            display:flex; 
+            gap:15px; 
+            margin-top:25px; 
+        }
         .modal-buttons button {
-            flex:1; padding:12px; border:none; border-radius:8px; cursor:pointer;
+            flex:1; 
+            padding:14px; 
+            border:none; 
+            border-radius:8px; 
+            cursor:pointer;
+            font-size:1rem;
+            font-weight:600;
+            transition: all 0.3s;
         }
-        .btn-book-modal { background:#4caf50; color:white; }
-        .btn-cancel-modal { background:#ddd; }
-
-        @media(max-width:768px){ .calendars-wrapper{ grid-template-columns:1fr; } }
+        .modal-buttons button:disabled {
+            opacity:0.6;
+            cursor:not-allowed;
+        }
+        .btn-book-modal { 
+            background:#4caf50; 
+            color:white; 
+        }
+        .btn-book-modal:hover:not(:disabled) { 
+            background:#45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76,175,80,0.3);
+        }
+        .btn-cancel-modal { 
+            background:#e0e0e0;
+            color:#333; 
+        }
+        .btn-cancel-modal:hover { 
+            background:#d0d0d0; 
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { 
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @media(max-width:768px){ 
+            .calendars-wrapper{ 
+                grid-template-columns:1fr; 
+            }
+            .modal-content {
+                width:95%;
+                padding:25px;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <!-- NAVBAR + HERO + SECTIONS ... (Your full content stays unchanged) -->
-    <!-- *** I DID NOT TOUCH ANY PART OF YOUR CONTENT BELOW THIS LINE *** -->
-
-    <!-- Everything you posted stays EXACTLY the same until the end -->
-
-    <!-- CALENDAR SECTIONS ARE ALREADY INCLUDED IN YOUR ORIGINAL HTML -->
-
-    <!-- BOOKING MODAL -->
-    <div class="booking-modal" id="bookingModal">
-        <div class="modal-content">
-            <h2 class="modal-header">Confirm Booking</h2>
-            <p class="modal-info" id="modalInfo"></p>
-
-            <div class="modal-buttons">
-                <button class="btn-book-modal" onclick="confirmBooking()">Book</button>
-                <button class="btn-cancel-modal" onclick="closeModal()">Cancel</button>
+    <!-- YOUR NAVBAR, HERO, AND OTHER SECTIONS GO HERE -->
+    <!-- Add your complete HTML content above this comment -->
+    
+    <!-- CALENDAR SECTION -->
+    <section id="availability" style="padding:60px 20px; background:#f9f9f9;">
+        <div style="max-width:1200px; margin:0 auto;">
+            <h2 style="text-align:center; color:#333; margin-bottom:15px; font-size:2.5rem;">
+                Check Availability
+            </h2>
+            <p style="text-align:center; color:#666; margin-bottom:40px; font-size:1.1rem;">
+                Select a date to book your special event
+            </p>
+            
+            <div class="calendars-wrapper">
+                <!-- Intimate Hall Calendar -->
+                <div class="calendar-section">
+                    <h3 class="hall-title">Intimate Hall</h3>
+                    <p class="hall-capacity">Capacity: 50-100 guests</p>
+                    <div class="calendar-header">
+                        <button onclick="changeMonth('intimate', -1)">← Prev</button>
+                        <span class="month-year" id="intimate-month-year"></span>
+                        <button onclick="changeMonth('intimate', 1)">Next →</button>
+                    </div>
+                    <div id="intimate-calendar"></div>
+                </div>
+                
+                <!-- Grand Hall Calendar -->
+                <div class="calendar-section">
+                    <h3 class="hall-title">Grand Hall</h3>
+                    <p class="hall-capacity">Capacity: 200-500 guests</p>
+                    <div class="calendar-header">
+                        <button onclick="changeMonth('grand', -1)">← Prev</button>
+                        <span class="month-year" id="grand-month-year"></span>
+                        <button onclick="changeMonth('grand', 1)">Next →</button>
+                    </div>
+                    <div id="grand-calendar"></div>
+                </div>
+            </div>
+            
+            <!-- Legend -->
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-box available"></div>
+                    <span>Available</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box booked"></div>
+                    <span>Booked</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box today"></div>
+                    <span>Today</span>
+                </div>
             </div>
         </div>
+    </section>
+    
+    <!-- BOOKING MODAL WITH FORM -->
+    <div class="booking-modal" id="bookingModal">
+        <div class="modal-content">
+            <h2 class="modal-header">Complete Your Booking</h2>
+            <p class="modal-info" id="modalInfo"></p>
+            
+            <!-- Booking Form -->
+            <form id="bookingForm" onsubmit="event.preventDefault(); confirmBooking();">
+                <div class="form-group">
+                    <label for="customerName">Full Name *</label>
+                    <input 
+                        type="text" 
+                        id="customerName" 
+                        placeholder="Enter your full name" 
+                        required
+                        minlength="2"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerEmail">Email Address *</label>
+                    <input 
+                        type="email" 
+                        id="customerEmail" 
+                        placeholder="your.email@example.com" 
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number *</label>
+                    <input 
+                        type="tel" 
+                        id="customerPhone" 
+                        placeholder="(555) 123-4567" 
+                        required
+                        pattern="[0-9\s\-\+\(\)]+"
+                    >
+                </div>
+                
+                <div class="modal-buttons">
+                    <button type="submit" class="btn-book-modal">Confirm Booking</button>
+                    <button type="button" class="btn-cancel-modal" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
-
+    
     <!-- YOUR JAVASCRIPT -->
     <script src="script.js"></script>
 </body>
