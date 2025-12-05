@@ -5,6 +5,239 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elegant Events Hall - Wedding & Event Venue</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Calendar Styles */
+        .calendars-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .calendar-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .hall-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .hall-capacity {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .calendar-header button:hover {
+            background: #5568d3;
+        }
+
+        .month-year {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .day-header {
+            text-align: center;
+            font-weight: 600;
+            color: #667eea;
+            padding: 10px 5px;
+            font-size: 0.85rem;
+        }
+
+        .day-cell {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .day-cell.empty {
+            cursor: default;
+        }
+
+        .day-cell.past {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .day-cell.available {
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-weight: 500;
+        }
+
+        .day-cell.available:hover {
+            background: #4caf50;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .day-cell.booked {
+            background: #ffebee;
+            color: #c62828;
+            cursor: not-allowed;
+        }
+
+        .day-cell.today {
+            border: 2px solid #667eea;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-box {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        .legend-box.available {
+            background: #e8f5e9;
+        }
+
+        .legend-box.booked {
+            background: #ffebee;
+        }
+
+        .legend-box.today {
+            background: white;
+            border: 2px solid #667eea;
+        }
+
+        .booking-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .booking-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .modal-info {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-book-modal {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-book-modal:hover {
+            background: #45a049;
+        }
+
+        .btn-cancel-modal {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .btn-cancel-modal:hover {
+            background: #e0e0e0;
+        }
+
+        @media (max-width: 768px) {
+            .calendars-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .legend {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -88,7 +321,45 @@
         <div class="container">
             <h2>Check Availability</h2>
             <p class="subtitle">Click on any available date to book</p>
-            <div id="calendars" class="calendar-grid"></div>
+            
+            <div class="calendars-wrapper">
+                <div class="calendar-section">
+                    <h3 class="hall-title">Intimate Hall</h3>
+                    <p class="hall-capacity">👥 50-150 guests • Starting from $2,000</p>
+                    <div class="calendar-header">
+                        <button onclick="changeMonth('intimate', -1)">←</button>
+                        <span class="month-year" id="intimate-month-year"></span>
+                        <button onclick="changeMonth('intimate', 1)">→</button>
+                    </div>
+                    <div id="intimate-calendar"></div>
+                </div>
+
+                <div class="calendar-section">
+                    <h3 class="hall-title">Grand Ballroom</h3>
+                    <p class="hall-capacity">👥 200-500 guests • Starting from $5,000</p>
+                    <div class="calendar-header">
+                        <button onclick="changeMonth('grand', -1)">←</button>
+                        <span class="month-year" id="grand-month-year"></span>
+                        <button onclick="changeMonth('grand', 1)">→</button>
+                    </div>
+                    <div id="grand-calendar"></div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-box available"></div>
+                    <span>Available</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box booked"></div>
+                    <span>Booked</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box today"></div>
+                    <span>Today</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -184,100 +455,4 @@
                     </div>
                     <div class="form-group">
                         <label>Event Type *</label>
-                        <select id="eventType">
-                            <option value="">Select Event Type</option>
-                            <option value="wedding">Wedding</option>
-                            <option value="engagement">Engagement</option>
-                            <option value="birthday">Birthday</option>
-                            <option value="corporate">Corporate Event</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Select Package *</label>
-                    <select id="package">
-                        <option value="">Select Package</option>
-                        <option value="basic">Basic - $2,500</option>
-                        <option value="premium">Premium - $5,000</option>
-                        <option value="luxury">Luxury - $8,500</option>
-                    </select>
-                </div>
-
-                <div id="paymentSummary" class="payment-summary" style="display: none;">
-                    <h3>💰 Payment Summary</h3>
-                    <div id="summaryContent"></div>
-                </div>
-
-                <button onclick="submitBooking()" class="btn btn-primary btn-large">
-                    Pay Deposit & Confirm Booking
-                </button>
-
-                <p class="form-note">
-                    🔒 Secure payment • 10% deposit required • Full payment due before event
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <div class="contact-item">
-                        <span class="icon">📍</span>
-                        <div>
-                            <p><strong>Address</strong></p>
-                            <p>123 Wedding Street, City, Israel</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon">📞</span>
-                        <div>
-                            <p><strong>Phone</strong></p>
-                            <p>050-123-4567</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon">📧</span>
-                        <div>
-                            <p><strong>Email</strong></p>
-                            <p>info@eleganteventshall.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon">🕐</span>
-                        <div>
-                            <p><strong>Hours</strong></p>
-                            <p>Sun-Thu: 9:00 AM - 8:00 PM</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h3>Send a Message</h3>
-                    <input type="text" placeholder="Your Name">
-                    <input type="email" placeholder="Your Email">
-                    <textarea placeholder="Your Message" rows="4"></textarea>
-                    <button onclick="alert('Message sent! We will contact you soon.')" class="btn btn-primary">
-                        Send Message
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <p><strong>Elegant Events Hall</strong></p>
-            <p>Two beautiful venues • Live availability tracking</p>
-            <p>© 2024 All rights reserved</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+                        <select id="
