@@ -5,9 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elegant Events Hall - Wedding & Event Venue</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic Calendar Styles to ensure it looks good immediately */
+        .calendar-header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .calendar-grid-view {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .day-name {
+            font-weight: bold;
+            text-align: center;
+            color: #666;
+            padding-bottom: 10px;
+        }
+        .calendar-day {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .calendar-day:hover {
+            background-color: #f0f8ff;
+            border-color: #b0d4ff;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-content">
@@ -24,7 +57,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Your Dream Wedding Starts Here</h1>
@@ -36,7 +68,6 @@
         </div>
     </section>
 
-    <!-- Features -->
     <section class="features">
         <div class="container">
             <div class="feature-grid">
@@ -59,7 +90,6 @@
         </div>
     </section>
 
-    <!-- Venues -->
     <section id="venues" class="venues">
         <div class="container">
             <h2>Our Venues</h2>
@@ -88,16 +118,14 @@
         </div>
     </section>
 
-    <!-- Availability Calendar -->
     <section id="availability" class="availability">
         <div class="container">
             <h2>Check Availability</h2>
             <p class="subtitle">Click on any available date to book</p>
-            <div id="calendars" class="calendar-grid"></div>
+            <div id="calendar" class="calendar-grid"></div>
         </div>
     </section>
 
-    <!-- Packages -->
     <section id="packages" class="packages">
         <div class="container">
             <h2>Wedding Packages</h2>
@@ -144,7 +172,6 @@
         </div>
     </section>
 
-    <!-- Booking Form -->
     <section id="booking" class="booking">
         <div class="container">
             <div class="booking-form">
@@ -228,7 +255,6 @@
         </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact" class="contact">
         <div class="container">
             <h2>Contact Us</h2>
@@ -278,7 +304,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p><strong>Elegant Events Hall</strong></p>
