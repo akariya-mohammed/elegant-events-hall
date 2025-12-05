@@ -21,7 +21,7 @@
         }
         .hall-title { 
             text-align: center; 
-            color:#667eea; 
+            color: #667eea; 
             margin-bottom:5px; 
             font-size:1.5rem; 
         }
@@ -37,7 +37,7 @@
             margin-bottom:15px; 
         }
         .calendar-header button {
-            background:#667eea; 
+            background: #667eea; 
             color:white; 
             border:none; 
             padding:8px 15px;
@@ -46,7 +46,7 @@
             transition: background 0.3s;
         }
         .calendar-header button:hover { 
-            background:#5568d3; 
+            background: #5568d3; 
         }
         .month-year { 
             font-size:1.2rem; 
@@ -60,7 +60,7 @@
         .day-header { 
             text-align:center; 
             font-weight:600; 
-            color:#667eea; 
+            color: #667eea; 
             padding:10px; 
         }
         .day-cell { 
@@ -80,18 +80,18 @@
             cursor:not-allowed; 
         }
         .day-cell.available { 
-            background:#e8f5e9; 
-            color:#2e7d32; 
+            background: #e8f5e9; 
+            color: #2e7d32; 
             font-weight:500; 
         }
         .day-cell.available:hover { 
-            background:#4caf50; 
+            background: #4caf50; 
             color:white; 
             transform:scale(1.1); 
         }
         .day-cell.booked { 
-            background:#ffebee; 
-            color:#c62828; 
+            background: #ffebee; 
+            color: #c62828; 
             cursor:not-allowed; 
         }
         .day-cell.today { 
@@ -114,10 +114,10 @@
             border-radius:4px; 
         }
         .legend-box.available { 
-            background:#e8f5e9; 
+            background: #e8f5e9; 
         }
         .legend-box.booked { 
-            background:#ffebee; 
+            background: #ffebee; 
         }
         .legend-box.today { 
             border:2px solid #667eea; 
@@ -155,6 +155,7 @@
             margin-bottom:20px;
             text-align:center;
             font-size:1.8rem;
+            margin-top:0;
         }
         .modal-info {
             background:#f5f5f5;
@@ -258,18 +259,65 @@
     </style>
 </head>
 <body>
-    <!-- YOUR NAVBAR, HERO, AND OTHER SECTIONS GO HERE -->
-    <!-- Add your complete HTML content above this comment -->
-    
-    <!-- CALENDAR SECTION -->
-    <section id="availability" style="padding:60px 20px; background:#f9f9f9;">
+    <!-- NAVBAR -->
+    <nav style="background:rgba(255,255,255,0.95); padding:20px 0; position:sticky; top:0; z-index:999; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+        <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:0 20px;">
+            <h1 style="color:#667eea; margin:0; font-size:1.8rem;">Elegant Events Hall</h1>
+            <ul style="display:flex; gap:30px; list-style:none; margin:0; padding:0;">
+                <li><a href="#home" style="color:#333; text-decoration:none; font-weight:500; transition:color 0.3s;">Home</a></li>
+                <li><a href="#halls" style="color:#333; text-decoration:none; font-weight:500; transition:color 0.3s;">Halls</a></li>
+                <li><a href="#availability" style="color:#333; text-decoration:none; font-weight:500; transition:color 0.3s;">Availability</a></li>
+                <li><a href="#contact" style="color:#333; text-decoration:none; font-weight:500; transition:color 0.3s;">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" style="background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:white; padding:100px 20px; text-align:center;">
+        <div style="max-width:800px; margin:0 auto;">
+            <h2 style="font-size:3rem; margin-bottom:20px; animation: fadeInDown 1s;">Make Your Dream Event a Reality</h2>
+            <p style="font-size:1.3rem; margin-bottom:40px; opacity:0.95;">Elegant venues for weddings, celebrations, and corporate events</p>
+            <a href="#availability" style="background:white; color:#667eea; padding:15px 40px; border-radius:30px; text-decoration:none; font-weight:600; display:inline-block; transition:transform 0.3s;">Check Availability</a>
+        </div>
+    </section>
+
+    <!-- HALLS SECTION -->
+    <section id="halls" style="padding:80px 20px; background:white;">
         <div style="max-width:1200px; margin:0 auto;">
-            <h2 style="text-align:center; color:#333; margin-bottom:15px; font-size:2.5rem;">
-                Check Availability
-            </h2>
-            <p style="text-align:center; color:#666; margin-bottom:40px; font-size:1.1rem;">
-                Select a date to book your special event
-            </p>
+            <h2 style="text-align:center; color:#333; margin-bottom:50px; font-size:2.5rem;">Our Venues</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:40px;">
+                <!-- Intimate Hall -->
+                <div style="background:#f9f9f9; border-radius:15px; padding:30px; text-align:center; box-shadow:0 5px 20px rgba(0,0,0,0.08); transition:transform 0.3s;">
+                    <h3 style="color:#667eea; margin-bottom:15px; font-size:1.8rem;">Intimate Hall</h3>
+                    <p style="color:#666; font-size:1.1rem; margin-bottom:20px;">Perfect for small gatherings and intimate celebrations</p>
+                    <ul style="list-style:none; padding:0; text-align:left; color:#555;">
+                        <li style="padding:10px 0; border-bottom:1px solid #e0e0e0;">✓ Capacity: 50-100 guests</li>
+                        <li style="padding:10px 0; border-bottom:1px solid #e0e0e0;">✓ Elegant decor & lighting</li>
+                        <li style="padding:10px 0; border-bottom:1px solid #e0e0e0;">✓ Premium sound system</li>
+                        <li style="padding:10px 0;">✓ Catering facilities</li>
+                    </ul>
+                </div>
+                
+                <!-- Grand Hall -->
+                <div style="background:#f9f9f9; border-radius:15px; padding:30px; text-align:center; box-shadow:0 5px 20px rgba(0,0,0,0.08); transition:transform 0.3s;">
+                    <h3 style="color:#764ba2; margin-bottom:15px; font-size:1.8rem;">Grand Hall</h3>
+                    <p style="color:#666; font-size:1.1rem; margin-bottom:20px;">Spectacular venue for large events and weddings</p>
+                    <ul style="list-style:none; padding:0; text-align:left; color:#555;">
+                        <li style="padding:10px 0; border-bottom:1px solid #e0e0e0;">✓ Capacity: 200-500 guests</li>
+                        <li style="padding:10px 0; border-bottom:1px solid #e0e0e0;">✓ Luxurious chandeliers</li>
+                        <li style="padding:10px 0; border-bottom:1px solid #e0e0e0;">✓ Professional stage & AV</li>
+                        <li style="padding:10px 0;">✓ VIP lounge area</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALENDAR / AVAILABILITY SECTION -->
+    <section id="availability" style="padding:80px 20px; background:#f9f9f9;">
+        <div style="max-width:1200px; margin:0 auto;">
+            <h2 style="text-align:center; color:#333; margin-bottom:15px; font-size:2.5rem;">Check Availability</h2>
+            <p style="text-align:center; color:#666; margin-bottom:40px; font-size:1.1rem;">Select a date to book your special event</p>
             
             <div class="calendars-wrapper">
                 <!-- Intimate Hall Calendar -->
@@ -314,7 +362,35 @@
             </div>
         </div>
     </section>
-    
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" style="padding:80px 20px; background:white;">
+        <div style="max-width:800px; margin:0 auto; text-align:center;">
+            <h2 style="color:#333; margin-bottom:20px; font-size:2.5rem;">Get in Touch</h2>
+            <p style="color:#666; margin-bottom:40px; font-size:1.1rem;">Have questions? We're here to help make your event perfect.</p>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:30px; margin-top:40px;">
+                <div>
+                    <h3 style="color:#667eea; margin-bottom:10px;">📞 Phone</h3>
+                    <p style="color:#666;">(555) 123-4567</p>
+                </div>
+                <div>
+                    <h3 style="color:#667eea; margin-bottom:10px;">✉️ Email</h3>
+                    <p style="color:#666;">info@elegantevents.com</p>
+                </div>
+                <div>
+                    <h3 style="color:#667eea; margin-bottom:10px;">📍 Location</h3>
+                    <p style="color:#666;">123 Event Street, City</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="background:#333; color:white; padding:30px 20px; text-align:center;">
+        <p style="margin:0;">© 2025 Elegant Events Hall. All rights reserved.</p>
+        <p style="margin:10px 0 0 0; opacity:0.8;">Making your special moments unforgettable</p>
+    </footer>
+
     <!-- BOOKING MODAL WITH FORM -->
     <div class="booking-modal" id="bookingModal">
         <div class="modal-content">
@@ -352,6 +428,7 @@
                         placeholder="(555) 123-4567" 
                         required
                         pattern="[0-9\s\-\+\(\)]+"
+                        title="Please enter a valid phone number"
                     >
                 </div>
                 
