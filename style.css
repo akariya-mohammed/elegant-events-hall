@@ -87,10 +87,11 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                url('https://images.unsplash.com/photo-1519167758481-83f29da8323c?w=1600&h=900&fit=crop');
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&h=1080&fit=crop&q=80');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     height: 100vh;
     display: flex;
     align-items: center;
