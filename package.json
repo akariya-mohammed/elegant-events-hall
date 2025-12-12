@@ -1,0 +1,39 @@
+{
+  "name": "elegant-events-hall",
+  "version": "1.0.0",
+  "description": "Wedding hall reservation system with booking, calendar, and admin panel",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "wedding",
+    "events",
+    "booking",
+    "reservation",
+    "hall"
+  ],
+  "author": "Elegant Events Hall",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "better-sqlite3": "^9.2.2",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "optionalDependencies": {
+    "nodemailer": "^6.9.7",
+    "stripe": "^14.9.0",
+    "@paypal/checkout-server-sdk": "^1.0.3",
+    "twilio": "^4.19.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
